@@ -11,5 +11,8 @@ class Bookmark(models.Model):
     categories = models.ManyToManyField(Category, blank=True)
     tags = models.ManyToManyField(Tag, blank=True)
 
-    def __str__(self):
+    def __str__(self) -> str:
+        return f"{self.title} (<{self.link}>)"
+
+    def __repr__(self) -> str:
         return f"{self.title} (<{self.link}>)"
