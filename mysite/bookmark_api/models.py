@@ -3,7 +3,7 @@ from django.db import models
 
 class Bookmark(models.Model):
     link = models.TextField(unique=True)
-    caption = models.TextField(null=True)
+    caption = models.TextField(null=True, blank=True)
     title = models.TextField()
 
     def __str__(self):
