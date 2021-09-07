@@ -11,11 +11,39 @@ class TagSerializer(serializers.HyperlinkedModelSerializer):
         model = Tag
         fields = ["id", "name"]
 
+    def to_representation(self, instance):
+        rep = super().to_representation(instance)
+        rep["count"] = len(instance.bookmark_set.all())
+        rep["bookmarks"] = [
+            {
+                "id": entry.id,
+                "title": entry.title,
+                "caption": entry.caption,
+                "link": entry.link,
+            }
+            for entry in instance.bookmark_set.all()
+        ]
+        return rep
+
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Category
         fields = ["id", "name"]
+
+    def to_representation(self, instance):
+        rep = super().to_representation(instance)
+        rep["count"] = len(instance.bookmark_set.all())
+        rep["bookmarks"] = [
+            {
+                "id": entry.id,
+                "title": entry.title,
+                "caption": entry.caption,
+                "link": entry.link,
+            }
+            for entry in instance.bookmark_set.all()
+        ]
+        return rep
 
 
 class BookmarkSerializer(serializers.HyperlinkedModelSerializer):
@@ -29,11 +57,11 @@ class BookmarkSerializer(serializers.HyperlinkedModelSerializer):
     def to_representation(self, instance):
         rep = super().to_representation(instance)
         rep["categories"] = [
-            {"id": entry["id"], "name": entry["name"]}
+            {"id": entry["id"], "name": entry["name"], "count": entry["count"]}
             for entry in CategorySerializer(instance.categories.all(), many=True).data
         ]
         rep["tags"] = [
-            {"id": entry["id"], "name": entry["name"]}
+            {"id": entry["id"], "name": entry["name"], "count": entry["count"]}
             for entry in TagSerializer(instance.tags.all(), many=True).data
         ]
 

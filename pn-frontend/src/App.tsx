@@ -23,11 +23,11 @@ function App() {
 
   return (
     <div className='App'>
-      <h2>Bookmarks</h2>
+      <h1>Bookmarks</h1>
       <BookmarkList bookmarks={bookmarks} />
-      <h2>Categories</h2>
+      <h1>Categories</h1>
       <CategoryList categories={categories} />
-      <h2>Tags</h2>
+      <h1>Tags</h1>
       <TagList tags={tags} />
     </div>
   );

@@ -12,8 +12,10 @@ function BookmarkList({ bookmarks } : { bookmarks : Bookmark[] | Error }) {
     </div>
   }
 
+  console.log(bookmarks)
+
   return (
-    <div id='bookmarks' className='row row-cols-1 row-cols-md-2 g-4'>
+    <div id='bookmarks' className='row row-cols-1 row-cols-md-3 g-4'>
       {bookmarks.map(bookmark => <BookmarkCard key={bookmark.id} bookmark={bookmark} /> )}
     </div>
   )
@@ -30,12 +32,12 @@ function BookmarkCard({ bookmark } : { bookmark : Bookmark}) {
       <ListGroup>
         <ListGroupItem>
           {bookmark.categories.map(
-            category => <Badge key={category.id} bg='primary' className='m-2'>{category.name}</Badge>
+            cat => <Badge key={cat.id} bg='primary' className='m-2'>{cat.name} ({cat.count})</Badge>
           )}
         </ListGroupItem>
         <ListGroupItem>
           {bookmark.tags.map(
-            tag => <Badge key={tag.id} bg='secondary' className='m-2'>{tag.name}</Badge>
+            tag => <Badge key={tag.id} bg='secondary' className='m-2'>{tag.name} ({tag.count})</Badge>
           )}
         </ListGroupItem>
       </ListGroup>

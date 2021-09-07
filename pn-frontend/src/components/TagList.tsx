@@ -1,4 +1,4 @@
-import { Alert, Badge } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 import { Tag } from "../types";
 
 function TagList({ tags } : { tags: Tag[] | Error }) {
@@ -14,10 +14,18 @@ function TagList({ tags } : { tags: Tag[] | Error }) {
 
   return (
     <div id='tags'>
-      {tags.map(
-        tag => 
-          <Badge key={tag.id} bg='primary' className='m-2'>{tag.name}</Badge>
-      )}
+      {tags.map(tag => <DisplayTag key={tag.id} tag={tag} />)}
+    </div>
+  )
+}
+
+function DisplayTag({ tag } : { tag : Tag }) {
+  return (
+    <div>
+      <h2>{tag.name} ({tag.count})</h2>
+      <ul>
+        {tag.bookmarks.map(bm => <li key={bm.id}>{bm.title}</li>)}
+      </ul>
     </div>
   )
 }

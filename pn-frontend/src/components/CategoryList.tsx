@@ -14,10 +14,18 @@ function CategoryList({ categories } : { categories : Category[] | Error }) {
 
   return (
     <div id='categories'>
-      {categories.map(
-        category => 
-          <Badge key={category.id} bg='primary' className='m-2'>{category.name}</Badge>
-      )}
+      {categories.map(cat => <DisplayCategory key={cat.id} category={cat} />)}
+    </div>
+  )
+}
+
+function DisplayCategory({ category } : { category : Category }) {
+  return (
+    <div>
+      <h2>{category.name} ({category.count})</h2>
+      <ul>
+        {category.bookmarks.map(bm => <li key={bm.id}>{bm.title}</li>)}
+      </ul>
     </div>
   )
 }

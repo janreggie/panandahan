@@ -1,11 +1,14 @@
-import { Category } from "./Category";
-import { Tag } from "./Tag";
+import { CategorySimple } from "./Category";
+import { TagSimple } from "./Tag";
 
-export interface Bookmark {
+export interface Bookmark extends BookmarkSimple {
+  categories: CategorySimple[],
+  tags: TagSimple[],
+}
+
+export interface BookmarkSimple {
   id: number,
-  link: string,
-  caption?: string,
   title: string,
-  categories: Category[],
-  tags: Tag[],
+  caption?: string,
+  link: string,
 }
