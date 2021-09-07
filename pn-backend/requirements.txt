@@ -3,6 +3,7 @@ black==21.8b0
 click==8.0.1
 colorama==0.4.4
 Django==3.2.7
+django-cors-headers==3.8.0
 django-filter==2.4.0
 djangorestframework==3.12.4
 flake8==3.9.2
