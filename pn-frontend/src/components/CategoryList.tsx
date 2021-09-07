@@ -1,4 +1,4 @@
-import { Alert, Badge } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 import { Category } from "../types";
 
 function CategoryList({ categories } : { categories : Category[] | Error }) {
