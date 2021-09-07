@@ -19,7 +19,7 @@ function App() {
     getTags()
       .then(result => setTags(result))
       .catch(err => setTags(err as Error))
-  })
+  }, [])
 
   return (
     <div className='App'>
